@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Valentine ❤️</title>
 
   <style>
@@ -135,6 +136,111 @@
       transform: translateY(-50%);
       width: 120px;
       z-index: 5;
+    }
+
+    /* Responsive Design for Mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .card {
+        padding: 25px;
+        margin: 20px auto;
+        max-width: 100%;
+      }
+
+      .photos {
+        gap: 8px;
+      }
+
+      .photos img {
+        width: 90px;
+        height: 90px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .message {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .stick-left, .stick-right {
+        width: 80px;
+      }
+
+      #celebration h1 {
+        font-size: 36px;
+      }
+
+      #celebration p {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+        width: 95%;
+      }
+
+      .photos {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photos img {
+        width: 80px;
+        height: 80px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .message {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 16px;
+        font-size: 13px;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .stick-left {
+        width: 60px;
+        left: 2%;
+        top: 85%;
+      }
+
+      .stick-right {
+        width: 60px;
+        right: 10px;
+        top: 15%;
+        display: none;
+      }
+
+      #celebration h1 {
+        font-size: 28px;
+      }
+
+      #celebration p {
+        font-size: 14px;
+        max-width: 100%;
+        padding: 0 20px;
+      }
     }
   </style>
 </head>
