@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Valentine ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Main Card */
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 35px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      max-width: 500px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .photos img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid white;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .message {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #ff4d6d;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Floating Hearts */
+    .hearts span {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    /* Celebration Screen */
+    #celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.2s ease;
+      z-index: 10;
+    }
+
+    #celebration.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #celebration h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    #celebration p {
+      font-size: 22px;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .stick-left {
+      position: fixed;
+      left: 3%;
+      top: 80%;
+      transform: translateY(-50%);
+      width: 120px;
+      z-index: 5;
+    }
+
+    .stick-right {
+      position: fixed;
+      right: 20px;
+      top: 10%;
+      transform: translateY(-50%);
+      width: 120px;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="Vaultboy_-_Way_After_Forever__Lyrics_(256k).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Main Valentine Card -->
+  <div class="card">
+    <div class="photos">
+      <img src="me.jpg" alt="Me">
+      <img src="her.jpg" alt="Immie">
+    </div>
+
+    <h1>Immie ❤️</h1>
+
+    <div class="message">
+      It’s been one year with you,  
+      and somehow every day still surprises me.
+      <br><br>
+      I love your intelligence...the way you think,  
+      your sense of humor, and your playfulness.
+      <br><br>
+      Even when it’s annoying 😅  
+      even when it pisses me off a little... 
+      I still crave it, because it’s you.
+      <br><br>
+      You are my favorite kind of chaos,  
+      my laughter on ordinary days,  
+      and my person.
+      <br><br>
+      So tell me…
+    </div>
+
+    <button onclick="sayYes()">Will you be my Valentine? 💕</button>
+  </div>
+
+  <!-- Floating Hearts Container -->
+  <div class="hearts"></div>
+
+  <!-- Celebration Screen -->
+  <div id="celebration">
+    <h1>She said YES! 💖</h1>
+    <p>
+      Immie, you just made my heart smile.<br>
+      One year down… forever to go. ❤️
+    </p>
+  </div>
+  <img src="stick_love.jpeg" alt="Stick Love Left" class="stick-left">
+  <img src="stick_love.jpeg" alt="Stick Love Right" class="stick-right">
+
+  <script>
+    function sayYes() {
+      const celebration = document.getElementById('celebration');
+      celebration.classList.add('show');
+      
+      // Send WhatsApp message after 3 seconds
+      setTimeout(() => {
+        sendWhatsAppMessage();
+      }, 3000);
+    }
+
+    function sendWhatsAppMessage() {
+      // Your phone number (without +, country code first)
+      const phoneNumber = '0783690251';
+      const message = 'YES! BABA 💖 One year down… forever to go. ❤️';
+      
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Open WhatsApp with the message
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      window.open(whatsappURL, '_blank');
+    }
+
+    /* Background Floating Hearts */
+    const heartsContainer = document.querySelector('.hearts');
+
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+
+    /* Celebration Hearts */
+    const celebration = document.getElementById('celebration');
+
+    setInterval(() => {
+      if (!celebration.classList.contains('show')) return;
+
+      const heart = document.createElement('span');
+      heart.innerHTML = '💖';
+      heart.style.position = 'absolute';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.bottom = '-20px';
+      heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      heart.style.animation = 'float 5s linear infinite';
+
+      celebration.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 200);
+  </script>
+
+</body>
+</html>
