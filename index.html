@@ -141,7 +141,7 @@
 <body>
 
   <!-- Background Music -->
-  <audio autoplay muted loop>
+  <audio id="bg-audio" autoplay loop playsinline>
     <source src="./Vaultboy_-_Way_After_Forever__Lyrics_(256k).mp3" type="audio/mpeg">
   </audio>
 
@@ -190,6 +190,27 @@
   <img src="assets/images/stick_love.jpeg" alt="Stick Love Right" class="stick-right">
 
   <script>
+    // Attempt to autoplay audio; if blocked, show a play button
+    const bgAudio = document.getElementById('bg-audio');
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!bgAudio) return;
+      bgAudio.play().catch(() => {
+        const playBtn = document.createElement('button');
+        playBtn.textContent = 'Play Music';
+        playBtn.style.position = 'fixed';
+        playBtn.style.right = '20px';
+        playBtn.style.bottom = '20px';
+        playBtn.style.zIndex = '20';
+        playBtn.style.padding = '10px 16px';
+        playBtn.style.borderRadius = '8px';
+        playBtn.style.border = 'none';
+        playBtn.style.background = 'rgba(255,255,255,0.95)';
+        playBtn.style.color = '#ff4d6d';
+        playBtn.style.cursor = 'pointer';
+        playBtn.onclick = () => { bgAudio.play(); playBtn.remove(); };
+        document.body.appendChild(playBtn);
+      });
+    });
     function sayYes() {
       const celebration = document.getElementById('celebration');
       celebration.classList.add('show');
